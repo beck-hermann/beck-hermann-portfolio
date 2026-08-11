@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800">
+  <rect width="600" height="800" fill="#e9e1cd"/>
+  <rect x="8" y="8" width="584" height="784" fill="none" stroke="#2b2a25" stroke-width="3" stroke-dasharray="14 10"/>
+  <circle cx="300" cy="300" r="110" fill="none" stroke="#2b2a25" stroke-width="5"/>
+  <path d="M120,620 C120,470 480,470 480,620 L480,660 L120,660 Z" fill="none" stroke="#2b2a25" stroke-width="5"/>
+  <text x="300" y="730" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-weight="700" font-size="30" letter-spacing="2" fill="#2b2a25">HEADSHOT</text>
+  <text x="300" y="762" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="18" fill="#55524a">replace this file's "src" with your photo</text>
+</svg>
