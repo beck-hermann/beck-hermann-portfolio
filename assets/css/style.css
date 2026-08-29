@@ -217,6 +217,16 @@ hr {
   margin-bottom: 0.75rem;
 }
 
+.section .lede {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.25rem, 3vw, 1.9rem);
+  line-height: 1.25;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  margin-bottom: 1.25rem;
+}
+
 .two-col {
   display: grid;
   grid-template-columns: minmax(200px, 320px) 1fr;
