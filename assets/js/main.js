@@ -25,14 +25,44 @@ document.addEventListener("DOMContentLoaded", function () {
       { src: "assets/img/about-rotation/img_3674.jpg", alt: "Getting a photo with a dinosaur skeleton at a museum" }
     ];
     var index = 0;
-    setInterval(function () {
-      index = (index + 1) % slides.length;
+    var timer = null;
+
+    function showSlide(newIndex) {
+      index = (newIndex + slides.length) % slides.length;
       rotatorImg.style.opacity = 0;
       setTimeout(function () {
         rotatorImg.src = slides[index].src;
         rotatorImg.alt = slides[index].alt;
         rotatorImg.style.opacity = 1;
       }, 400);
-    }, 5000);
+    }
+
+    function startAutoplay() {
+      timer = setInterval(function () {
+        showSlide(index + 1);
+      }, 5000);
+    }
+
+    function restartAutoplay() {
+      clearInterval(timer);
+      startAutoplay();
+    }
+
+    var prevBtn = document.querySelector(".rotator-prev");
+    var nextBtn = document.querySelector(".rotator-next");
+    if (prevBtn) {
+      prevBtn.addEventListener("click", function () {
+        showSlide(index - 1);
+        restartAutoplay();
+      });
+    }
+    if (nextBtn) {
+      nextBtn.addEventListener("click", function () {
+        showSlide(index + 1);
+        restartAutoplay();
+      });
+    }
+
+    startAutoplay();
   }
 });
