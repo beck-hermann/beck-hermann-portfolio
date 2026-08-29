@@ -227,6 +227,31 @@ hr {
   margin-bottom: 1.25rem;
 }
 
+.rotator {
+  position: relative;
+  width: 100%;
+  height: min(65vh, 560px);
+  background: var(--color-ink);
+  border: 1px solid var(--color-rule);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.rotator img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  transition: opacity 0.4s ease;
+}
+
+@media (max-width: 700px) {
+  .rotator { height: min(60vh, 420px); }
+}
+
 .two-col {
   display: grid;
   grid-template-columns: minmax(200px, 320px) 1fr;
