@@ -313,6 +313,7 @@ hr {
 .media-landscape { display: block; }
 .media-portrait { display: block; }
 .media-gallery-item { aspect-ratio: 4 / 3; object-fit: cover; }
+.media-featured { aspect-ratio: 16 / 9; object-fit: cover; margin-bottom: 1rem; }
 
 .gallery {
   display: grid;
@@ -332,7 +333,7 @@ hr {
 
 .project:last-of-type { border-bottom: none; }
 
-.project h2 { font-size: clamp(1.5rem, 4vw, 2rem); }
+.project h2 { font-size: clamp(1.8rem, 4.5vw, 2.6rem); margin-bottom: 0.3em; }
 
 .project-meta {
   font-family: var(--font-display);
@@ -340,8 +341,8 @@ hr {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--color-ink-soft);
-  margin-bottom: 1.25rem;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
 }
 
 .project-meta span + span::before {
