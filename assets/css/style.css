@@ -322,6 +322,16 @@ hr {
   margin: 1.25rem 0;
 }
 
+/* Two photos side by side, together taking up the same width/spot a
+   single .media-featured photo would. Each photo reuses the
+   .media-gallery-item crop (4:3, object-fit: cover). */
+.featured-duo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
 /* ==========================================================================
    Lightbox — popup overlay for viewing project photos full-size
    ========================================================================== */
