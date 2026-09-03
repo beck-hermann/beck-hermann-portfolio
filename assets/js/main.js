@@ -65,4 +65,46 @@ document.addEventListener("DOMContentLoaded", function () {
 
     startAutoplay();
   }
+
+  // Lightbox: clicking a project's featured or gallery photo opens a
+  // full-size popup overlay; clicking outside the image (or the close
+  // button, or pressing Escape) dismisses it and returns to the page.
+  var lightboxTargets = document.querySelectorAll("img.media-featured, img.media-gallery-item");
+  if (lightboxTargets.length) {
+    var overlay = document.createElement("div");
+    overlay.className = "lightbox-overlay";
+    overlay.innerHTML = '<button type="button" class="lightbox-close" aria-label="Close">&times;</button><img class="lightbox-img" alt="">';
+    document.body.appendChild(overlay);
+
+    var lightboxImg = overlay.querySelector(".lightbox-img");
+    var closeBtn = overlay.querySelector(".lightbox-close");
+
+    function openLightbox(src, alt) {
+      lightboxImg.src = src;
+      lightboxImg.alt = alt || "";
+      overlay.classList.add("open");
+      document.body.classList.add("lightbox-locked");
+    }
+
+    function closeLightbox() {
+      overlay.classList.remove("open");
+      document.body.classList.remove("lightbox-locked");
+      lightboxImg.src = "";
+    }
+
+    lightboxTargets.forEach(function (img) {
+      img.classList.add("lightbox-trigger");
+      img.addEventListener("click", function () {
+        openLightbox(img.currentSrc || img.src, img.alt);
+      });
+    });
+
+    overlay.addEventListener("click", function (event) {
+      if (event.target === overlay) closeLightbox();
+    });
+    closeBtn.addEventListener("click", closeLightbox);
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") closeLightbox();
+    });
+  }
 });
