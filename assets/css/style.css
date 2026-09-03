@@ -430,6 +430,31 @@ body.lightbox-locked { overflow: hidden; }
 .doc-caption::after { content: "\2193"; margin-left: 0.4em; color: var(--accent); }
 .doc-caption:hover { color: var(--accent); }
 
+/* Row of evenly spaced downloadable-report links below a project's photos */
+.report-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+  margin: 0.5rem 0 1.75rem;
+}
+
+.report-links a {
+  display: block;
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-ink);
+  text-decoration: none;
+  padding: 0.75em 0.5em;
+  border: 1px solid var(--color-rule);
+}
+
+.report-links a::after { content: "\2193"; margin-left: 0.4em; color: var(--accent); }
+.report-links a:hover { color: var(--accent); border-color: var(--accent); }
+
 /* ==========================================================================
    Buttons & link list (Links & Downloads page, Home quick-links)
    ========================================================================== */
