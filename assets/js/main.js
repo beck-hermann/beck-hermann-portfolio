@@ -66,36 +66,67 @@ document.addEventListener("DOMContentLoaded", function () {
     startAutoplay();
   }
 
-  // Lightbox: clicking a project's featured or gallery photo opens a
-  // full-size popup overlay; clicking outside the image (or the close
-  // button, or pressing Escape) dismisses it and returns to the page.
-  var lightboxTargets = document.querySelectorAll("img.media-featured, img.media-gallery-item");
+  // Lightbox: clicking a project's featured/gallery photo or video opens a
+  // full-size popup overlay showing the whole, uncropped media; clicking
+  // outside it (or the close button, or pressing Escape) dismisses it and
+  // returns to the page. Videos use this instead of native fullscreen so
+  // the grid's cropped aspect ratio never carries over to the popup.
+  var lightboxTargets = document.querySelectorAll(
+    "img.media-featured, img.media-gallery-item, video.media-featured, video.media-gallery-item"
+  );
   if (lightboxTargets.length) {
     var overlay = document.createElement("div");
     overlay.className = "lightbox-overlay";
-    overlay.innerHTML = '<button type="button" class="lightbox-close" aria-label="Close">&times;</button><img class="lightbox-img" alt="">';
+    overlay.innerHTML =
+      '<button type="button" class="lightbox-close" aria-label="Close">&times;</button>' +
+      '<img class="lightbox-img" alt="">' +
+      '<video class="lightbox-video" controls playsinline></video>';
     document.body.appendChild(overlay);
 
     var lightboxImg = overlay.querySelector(".lightbox-img");
+    var lightboxVideo = overlay.querySelector(".lightbox-video");
     var closeBtn = overlay.querySelector(".lightbox-close");
 
-    function openLightbox(src, alt) {
+    function openImageLightbox(src, alt) {
+      lightboxVideo.pause();
+      lightboxVideo.removeAttribute("src");
+      lightboxVideo.classList.remove("shown");
       lightboxImg.src = src;
       lightboxImg.alt = alt || "";
+      lightboxImg.classList.add("shown");
       overlay.classList.add("open");
       document.body.classList.add("lightbox-locked");
+    }
+
+    function openVideoLightbox(src) {
+      lightboxImg.src = "";
+      lightboxImg.classList.remove("shown");
+      lightboxVideo.src = src;
+      lightboxVideo.classList.add("shown");
+      overlay.classList.add("open");
+      document.body.classList.add("lightbox-locked");
+      lightboxVideo.play();
     }
 
     function closeLightbox() {
       overlay.classList.remove("open");
       document.body.classList.remove("lightbox-locked");
       lightboxImg.src = "";
+      lightboxImg.classList.remove("shown");
+      lightboxVideo.pause();
+      lightboxVideo.removeAttribute("src");
+      lightboxVideo.load();
+      lightboxVideo.classList.remove("shown");
     }
 
-    lightboxTargets.forEach(function (img) {
-      img.classList.add("lightbox-trigger");
-      img.addEventListener("click", function () {
-        openLightbox(img.currentSrc || img.src, img.alt);
+    lightboxTargets.forEach(function (el) {
+      el.classList.add("lightbox-trigger");
+      el.addEventListener("click", function () {
+        if (el.tagName === "VIDEO") {
+          openVideoLightbox(el.currentSrc || el.src);
+        } else {
+          openImageLightbox(el.currentSrc || el.src, el.alt);
+        }
       });
     });
 
