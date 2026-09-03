@@ -315,6 +315,20 @@ hr {
 .media-gallery-item { aspect-ratio: 4 / 3; object-fit: cover; }
 .media-featured { aspect-ratio: 16 / 9; object-fit: cover; margin-bottom: 1rem; }
 
+.media-placeholder {
+  aspect-ratio: 16 / 9;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-parchment-dark);
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-ink-soft);
+}
+
 .gallery {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
