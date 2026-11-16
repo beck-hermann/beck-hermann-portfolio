@@ -59,9 +59,9 @@ Keep photos reasonably sized (under ~1–2 MB each) so pages load quickly.
 
 ## Updating your résumé
 
-1. Drop the new PDF into `assets/resume/`.
-2. In `links.html`, update the `href="assets/resume/..."` on the download button to the new
-   filename.
+1. Copy `Documents\01_Active\Beck_Hermann_Resume_Current.pdf` over
+   `assets/resume/Beck_Hermann_Resume.pdf` (keep that exact filename).
+2. No HTML edit needed — `links.html` always points to `Beck_Hermann_Resume.pdf`.
 
 ## Updating your social links
 
